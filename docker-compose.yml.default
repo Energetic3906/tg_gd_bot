@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ytdl:
+    container_name: tg_GD
+    image: povoma4617/tg_GD-bot:latest
+    environment:
+      - API_ID=<>
+      - API_HASH=<>
+      - BOT_TOKEN=<>
+      - AUTHORIZED_USERS=<>
+    volumes: 
+      - /path/to/youtube:/app/google_drive/youtube # youtube path
+      - /path/to/bilibili:/app/google_drive/bilibili # bilibili path
+      - /path/to/bilibili_cookie:/app/bilibili_cookie # bilibili cookie path
+    restart: always
