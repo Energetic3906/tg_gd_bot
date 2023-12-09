@@ -1,6 +1,8 @@
 import os
 import logging
 import subprocess
+import yt_dlp
+import requests
 from urllib.parse import urlparse
 from pyrogram import Client, filters, types, enums
 
@@ -56,11 +58,29 @@ def handle_text_message(client, message):
         message.reply_text("Invalid video link. Please provide a link from YouTube or Bilibili.")
         return
 
+    ydl = yt_dlp.YoutubeDL()
+    info = ydl.extract_info(video_link, download=False)
+    
+    # 从视频信息中获取标题和缩略图 URL
+    filename = info.get("title")
+
+    thumbnail_url = info.get("thumbnail")
+        
+    # 使用 requests 下载缩略图
+    response = requests.get(thumbnail_url)
+
+    thumbnail_filename = os.path.join(paths, f"{filename}.jpg")
+
+    with open(thumbnail_filename, 'wb') as f:
+        f.write(response.content)
+
+
     command = [
         'yt-dlp',
         '-f', 'bestvideo+bestaudio/best',
         video_link,
         '--paths', paths,
+        '--output', filename,
         '--write-subs',
         '--write-auto-subs',
         '--sub-langs', 'zh.*',
