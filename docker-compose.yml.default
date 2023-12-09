@@ -12,4 +12,5 @@ services:
       - /path/to/youtube:/app/google_drive/youtube # youtube path
       - /path/to/bilibili:/app/google_drive/bilibili # bilibili path
       - /path/to/bilibili_cookie:/app/bilibili_cookie # bilibili cookie path
+      - /path/to/telegram_download_bot/my_bot.session:/app/my_bot.session # Avoid repeated login verification
     restart: always
