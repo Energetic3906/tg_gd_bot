@@ -14,7 +14,7 @@ authorized_users_env = os.environ.get("AUTHORIZED_USERS")
 # 将环境变量值解析为实际的用户ID列表
 AUTHORIZED_USERS = [int(user_id) for user_id in authorized_users_env.split(",")] if authorized_users_env else []
 # 定义Pyrogram客户端
-app = Client('my_bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+app = Client('/app/bot/my_bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 # 配置日志记录器
 logging.basicConfig(level=logging.INFO)
