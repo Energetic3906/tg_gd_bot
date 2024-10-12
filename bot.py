@@ -81,7 +81,6 @@ def handle_text_message(client, message):
         video_link,
         '--paths', paths,
         '--output', filename,
-        '--write-subs',
         '--write-auto-subs',
         '--sub-langs', 'zh.*',
         '--merge-output-format', 'mkv',
